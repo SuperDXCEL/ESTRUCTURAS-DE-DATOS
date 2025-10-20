@@ -7,12 +7,15 @@
 class Lista {
  public:
   Lista();
+  Lista(const Lista& lista);
   ~Lista();
-  void insert(Aficionado* aficionado);
+  void append(Aficionado* aficionado);
+  int get_size();
+  Aficionado* operator[](int index);
  private:
   NodoLista* first_element_;
+  NodoLista* last_element_;
   int size_;
-  Aficionado* operator[](int index);
 };
 
 #endif //LISTA_H

@@ -6,6 +6,7 @@
 class Pila {
  public:
   Pila();
+  Pila(Pila* stack);
   ~Pila();
   Aficionado* top();
   Aficionado* pop();

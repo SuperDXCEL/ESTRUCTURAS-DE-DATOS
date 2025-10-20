@@ -1,20 +1,29 @@
 #include "../header/Cola.h"
 #include <iostream>
 
-Cola::Cola() {
-  size_ = 0;
-  first_element_ = nullptr;
-  last_element_ = nullptr;
+Cola::Cola() : size_(0), first_element_(nullptr), last_element_(nullptr) {}
+Cola::Cola(const Cola& queue_to_copy) : size_(0), first_element_(nullptr), last_element_(nullptr) {
+  if (queue_to_copy.size_ > 0) {
+	  NodoCola* head = queue_to_copy.first_element_;
+	  while (head) {
+	    Aficionado* fan = head->aficionado_;
+	    insert(fan);
+      head = head->next_;
+	  }
+	  size_ = queue_to_copy.size_;
+  }
 }
 Cola::~Cola() {
-  while (first_element_) {
-    NodoCola* node = pop();
+  std::cout << "DELETING" << std::endl;
+  while (size_ > 0) {
+    Aficionado* fan = pop();
   }
 }
 int Cola::get_size() {
   return size_;
 }
-void Cola::insert(NodoCola* nodo) {
+void Cola::insert(Aficionado* fan) {
+  NodoCola* nodo = new NodoCola(fan, nullptr);
   if (!first_element_) {
     first_element_ = nodo;
     first_element_->next_ = nullptr;
@@ -25,9 +34,8 @@ void Cola::insert(NodoCola* nodo) {
   last_element_ = nodo;
   size_++;
 }
-
 // Skipping elements in testPila.cc?
-NodoCola* Cola::pop() {
+Aficionado* Cola::pop() {
   if (first_element_) {
     std::cout << "at pop\n" << std::endl;
 
@@ -41,59 +49,60 @@ NodoCola* Cola::pop() {
       last_element_ = nullptr;
     }
     delete aux;
+    aux = nullptr;
     size_--;
-    return auxVal;
+    return auxVal->aficionado_;
   }
   return nullptr;
 }
-NodoCola* Cola::front() {
-  return first_element_;
+Aficionado* Cola::front() {
+  return first_element_->aficionado_;
 }
-NodoCola* Cola::back() {
-  return last_element_;
+Aficionado* Cola::back() {
+  return last_element_->aficionado_;
 }
-NodoCola* Cola::merge_sort(NodoCola* head) {
-  if (!head || !head->next_) {
-    return head;
-  }
-
-  //Turtle and hare algorithm to get to the middle
-  NodoCola* slow = head;
-  NodoCola* fast = head;
-  NodoCola* prev = nullptr;
-  while (fast && fast->next_) {
-    prev = slow;
-    slow = slow->next_;
-    fast = fast->next_->next_;
-  }
-  //Split the list in half
-  prev->next_ = nullptr;
-  
-  NodoCola* left = merge_sort(head);
-  NodoCola* right = merge_sort(right);
-
-  //At this point left and right are two different sorted-in-ascending-order lists which we can just merge like this
-  NodoCola* dummy = new NodoCola(nullptr, nullptr);
-  NodoCola* aux = dummy;
-  while (left && right) {
-    int left_arrival_time = left->aficionado_->get_arrival_time();
-    int right_arrival_time = right->aficionado_->get_arrival_time();
-    if (left_arrival_time < right_arrival_time) {
-      aux->next_ = left;
-      left = left->next_;
-    } else {
-      aux->next_ = right;
-      right = right->next_;
-    }
-    aux = aux->next_;
-  }
-  if (left) {
-    aux->next_ = left;
-  } else if (right) {
-    aux->next_ = right;
-  }
-  return dummy->next_;
-}
+//NodoCola* Cola::merge_sort(NodoCola* head) {
+//  if (!head || !head->next_) {
+//    return head;
+//  }
+//
+//  //Turtle and hare algorithm to get to the middle
+//  NodoCola* slow = head;
+//  NodoCola* fast = head;
+//  NodoCola* prev = nullptr;
+//  while (fast && fast->next_) {
+//    prev = slow;
+//    slow = slow->next_;
+//    fast = fast->next_->next_;
+//  }
+//  //Split the list in half
+//  prev->next_ = nullptr;
+//  
+//  NodoCola* left = merge_sort(head);
+//  NodoCola* right = merge_sort(right);
+//
+//  //At this point left and right are two different sorted-in-ascending-order lists which we can just merge like this
+//  NodoCola* dummy = new NodoCola(nullptr, nullptr);
+//  NodoCola* aux = dummy;
+//  while (left && right) {
+//    int left_arrival_time = left->aficionado_->get_arrival_time();
+//    int right_arrival_time = right->aficionado_->get_arrival_time();
+//    if (left_arrival_time < right_arrival_time) {
+//      aux->next_ = left;
+//      left = left->next_;
+//    } else {
+//      aux->next_ = right;
+//      right = right->next_;
+//    }
+//    aux = aux->next_;
+//  }
+//  if (left) {
+//    aux->next_ = left;
+//  } else if (right) {
+//    aux->next_ = right;
+//  }
+//  return dummy->next_;
+//}
 NodoCola* Cola::sortList(NodoCola* head) {
   // This way we guarantee length of at least 2 for ordering and merging
   std::cout << "SORTING" << std::endl;

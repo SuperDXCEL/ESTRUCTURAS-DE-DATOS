@@ -1,9 +1,6 @@
 #include "../header/NodoLista.h"
 
-NodoLista::~NodoLista() {
-  delete aficionado_;
-  delete next_;
-}
+NodoLista::~NodoLista() {}
 Aficionado* NodoLista::get_aficionado() {
   return aficionado_;
 }

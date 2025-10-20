@@ -9,13 +9,21 @@ class Gestor {
  public:
   Gestor();
   ~Gestor();
-  void AficionadosEnPila();
-  void SociosEnCola();
-  void SimpatizantesEnCola();
-  void AficionadosEnLista();
-  void AficionadosEnArbol();
-  //void genera10Aficionados();
+  int AficionadosEnPila();
+  int SociosEnCola();
+  int SimpatizantesEnCola();
+  int AficionadosEnLista();
+  int AficionadosEnArbol();
+  void genera10Aficionados();
   void muestraAficionados();
+  void borraAficionadosPila();
+  void encolarAficionados();
+  void muestraSociosCola();
+  void muestraSimpatizantesCola();
+  void borraAficionadosColas();
+  void enlistarAficionados();
+  void buscarAficionados();
+  void reiniciar();
  private:
   Pila* stack_;
   Cola* member_queue_;

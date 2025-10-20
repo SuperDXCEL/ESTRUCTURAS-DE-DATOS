@@ -11,11 +11,11 @@ int main(int argc, char** argv)
 
 		cout << "\n\t--------------------------------------------------------------"
 				"--------\n";
-		cout << "\tAficionados en la pila -> " << 0 /*gestor.AficionadosEnPila()*/
-			 << "\n\tAficionados en las colas:\n \t\tSocios-> " << 0 /*gestor.SociosEnCola() */ << "\tSimpatizantes-> "
-			 << 0 /*gestor.SimpatizantesEnCola() */
-			 << " \n\tAficionados en la lista -> " << 0 /*gestor.AficionadosEnLista()*/
-			 << "\n\tAficionados en el arbol -> " << 0							  /*gestor.AficionadosEnArbol()*/
+		cout << "\tAficionados en la pila -> " << gestor.AficionadosEnPila()
+			 << "\n\tAficionados en las colas:\n \t\tSocios-> " << gestor.SociosEnCola() << "\tSimpatizantes-> "
+			 << gestor.SimpatizantesEnCola()
+			 << "\n\tAficionados en la lista -> " << gestor.AficionadosEnLista()
+			 << "\n\tAficionados en el arbol -> " << 0 /*gestor.AficionadosEnArbol()*/
 			 << "\n";
 		cout << "\t----------------------------------------------------------------"
 				"------\n\n";
@@ -51,8 +51,7 @@ int main(int argc, char** argv)
 		cout << "\tIndique la opcion deseada: ";
 		cin >> opcion;
 		opcion = toupper(opcion);
-		// system("clear");
-		system("cls");
+		system("clear");
 
 		switch(opcion) {
 
@@ -63,28 +62,28 @@ int main(int argc, char** argv)
 			gestor.muestraAficionados();
 			break;
 		case 'C':
-			// gestor.borraAficionadosPila();
+			gestor.borraAficionadosPila();
 			break;
 		case 'D':
-			// gestor.encolarAficionados();
+			gestor.encolarAficionados();
 			break;
 		case 'E':
-			// gestor.muestraSociosCola();
+			gestor.muestraSociosCola();
 			break;
 		case 'F':
-			// gestor.muestraSimpatizantesCola();
+			gestor.muestraSimpatizantesCola();
 			break;
 		case 'G':
-			// gestor.borraAficionadosColas();
+			gestor.borraAficionadosColas();
 			break;
 		case 'H':
-			// gestor.enlistarAficionados();
+			gestor.enlistarAficionados();
 			break;
 		case 'I':
-			// gestor.buscarAficionados();
+			gestor.buscarAficionados();
 			break;
 		case 'J':
-			// gestor.reiniciar();
+			gestor.reiniciar();
 			break;
 		case 'K':
 			//...;

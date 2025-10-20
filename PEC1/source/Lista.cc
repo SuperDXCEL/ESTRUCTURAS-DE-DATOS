@@ -1,8 +1,17 @@
 #include "../header/Lista.h"
+#include <iostream>
 
-Lista::Lista() {
-  first_element_ = nullptr;
-  size_ = 0;
+Lista::Lista() : first_element_(nullptr), last_element_(nullptr), size_(0) {}
+Lista::Lista(const Lista& lista) : first_element_(nullptr), size_(lista.size_) {
+  if (lista.size_ > 0) {
+	  NodoLista* aux = lista.first_element_;
+	  while (aux) {
+      append(aux->aficionado_);
+      std::cout << "appending..." << aux->aficionado_ << "\n";
+	    aux = aux->next_;
+	  }
+	  size_ = lista.size_;
+  }
 }
 Lista::~Lista() {
   NodoLista* aux = first_element_;
@@ -12,18 +21,23 @@ Lista::~Lista() {
     delete copy;
   }
 }
-void Lista::insert(Aficionado* aficionado) {
+void Lista::append(Aficionado* aficionado) {
   NodoLista* node = new NodoLista(aficionado, nullptr);
   if (first_element_) {
-    first_element_->next_ = node;
+    last_element_->next_ = node;
   } else {
-  first_element_ = node;
+    first_element_ = node;
   }
+  last_element_ = node;
+  std::cout << "NODE ADDRESS: " << node << std::endl;
   size_++;
 }
+int Lista::get_size() {
+  return size_;
+}
 Aficionado* Lista::operator[](int index) {
-  if (index == 0 && first_element_) {
-    return first_element_->aficionado_;
+  if (!first_element_) {
+    return nullptr;
   }
   NodoLista* aux = first_element_;
   while (index != 0) {

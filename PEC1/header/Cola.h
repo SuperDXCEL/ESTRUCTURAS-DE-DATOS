@@ -6,12 +6,14 @@
 class Cola {
  public:
   Cola();
+  // Automatic copy operator
+  Cola(const Cola& cola);
   ~Cola();
   int get_size();
-  void insert(NodoCola* nodo);
-  NodoCola* pop();
-  NodoCola* front();
-  NodoCola* back();
+  void insert(Aficionado* nodo);
+  Aficionado* pop();
+  Aficionado* front();
+  Aficionado* back();
   NodoCola* merge_sort(NodoCola* nodo);
   NodoCola* sortList(NodoCola* nodo);
   void sort_list();

@@ -8,8 +8,8 @@
 
 class NodoCola {
  public:
-  NodoCola(Aficionado* aficionado, NodoCola* next) : aficionado_(aficionado), next_(next) {}
-  //~NodoCola();
+  NodoCola(Aficionado* aficionado, NodoCola* next);
+  ~NodoCola();
   Aficionado* get_aficionado();
   NodoCola* get_next();
   void set_next(NodoCola* nodo);
